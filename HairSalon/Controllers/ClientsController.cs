@@ -2,7 +2,9 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 using HairSalon.Models;
+using System;
 
 namespace HairSalon.Controllers
 {
@@ -23,10 +25,25 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/Stylists/{stylistId}/Clients/Create", Name="Create")]
-        public ActionResult Create(Client client, int stylistId)
+        public ActionResult Create(int stylistId, IFormCollection collection)
         {
-            _db.Clients.Add(client);
-            _db.SaveChanges();
+            try{
+                Client client = new Client();
+                
+                client.FirstName=collection["FirstName"];
+                client.LastName = collection["LastName"];
+                client.StartDate = DateTime.Parse(collection["StartDate"]);
+                client.PreferredAppointmentWeekDay = Int32.Parse(collection["PreferredAppointmentWeekDay"]);
+                client.PreferredAppointmentTime = collection["PreferredAppointmentTime"].ToString();
+                client.StylistId = Int32.Parse(collection["StylistId"]);
+                client.Stylist = _db.Stylists.FirstOrDefault(s => s.StylistId == collection["StylistId"]);
+                _db.Clients.Add(client);
+                _db.SaveChanges();
+            }
+            catch
+            {
+
+            }
             return RedirectToRoute("Stylists", new { controller="Stylists", action="Details", id = stylistId });
         }
 

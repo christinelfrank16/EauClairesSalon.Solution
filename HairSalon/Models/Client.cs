@@ -14,7 +14,7 @@ namespace HairSalon.Models
         [Display(Name = "Preferred Day of Week")]
         public int PreferredAppointmentWeekDay { get; set; }
         [Display(Name = "Preferred Time")]
-        public TimeSpan PreferredAppointmentTime { get; set; }
+        public string PreferredAppointmentTime { get; set; }
 
         public int StylistId { get; set; }
         public virtual Stylist Stylist { get; set; }

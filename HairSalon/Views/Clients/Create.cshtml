@@ -5,7 +5,7 @@
     ViewData["Title"] = "Add a Client";
     Layout = "_Layout";
     int stylistId = ViewBag.StylistId;
-    ViewData["WeekDays"] = new SelectList(
+    ViewData["PreferredAppointmentWeekDay"] = new SelectList(
         new List<SelectListItem>
         {
             new SelectListItem { Selected = true, Text = "Monday", Value = ((int) DayOfWeek.Monday).ToString()},
@@ -38,11 +38,11 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.PreferredAppointmentWeekDay)
-        @Html.DropDownList("weekDays") 
+        @Html.DropDownList("PreferredAppointmentWeekDay") 
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.PreferredAppointmentTime)
-        @Html.TextBoxFor(model => model.StartDate, "{0:HH:mm}", new { @class = "form-control", @type="time"}) 
+        @Html.TextBoxFor(model => model.PreferredAppointmentTime, "{0:HH:mm}", new { @class = "form-control", @type="time"}) 
     </div>
 
     @Html.HiddenFor(model => model.StylistId, stylistId)
