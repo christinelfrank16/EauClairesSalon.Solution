@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Reassign Clients of @Model.Name";
+    Layout = "_Layout";
+}
+@using HairSalon.Models;
+@model HairSalon.Models.Stylist;
+<h3>Reassign Clients of @Model.Name</h3>
+
+@foreach(Client client in Model.Clients)
+{
+    @using (Html.BeginForm())
+    {
+        <h4>client.Name</h4>
+        <input type="hidden" name="ClientId" value=@client.ClientId>
+        <input type="hidden" name="Name" value=@client.Name>
+
+        <div class="form-group">
+            <label name="StylistId" value="New Stylist">
+            @Html.DropDownList("StylistId");
+        </div>
+
+        <input type="submit" value="Save" />
+    }
+}
