@@ -1,0 +1,29 @@
+@using ZoomFood.Models;
+@model ZoomFood.Models.Stylist;
+@{
+    ViewData["Title"] = @Model.Name;
+    Layout = "_Layout";
+}
+
+<h1>@Model.Name</h1>
+<h4>Price Rating: @await Html.PartialAsync("PriceRating", Model.PriceRating)
+</h4>
+
+<h3>Clients:</h3>
+@if(@Model.Clients.Count == 0)
+{
+    <p>No clients at this time.</p>
+}
+else
+{
+    <ul>
+    @foreach(Client client in @Model.Clients)
+    {
+        <li>@Html.ActionLink($"{@client.Name}", "Details", "Clients", new {id = @client.ClientId })</li>
+    }
+    </ul>
+}
+<p>Is a client missing? Add one @Html.ActionLink("here", "Create","Client", new { id = Model.StylistId })</p>
+
+<p>@Html.ActionLink("Remove Stylist", "Delete", new {id = @Model.StylistId })</p>
+<p>@Html.ActionLink("Edit Stylist", "Edit", new {id = @Model.StylistId })</p>
