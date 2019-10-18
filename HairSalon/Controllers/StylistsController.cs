@@ -85,15 +85,18 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost]
-        public ActionResult Reassign(Stylist stylist, List<Client> clients)
+        public ActionResult Reassign(Client client, int fromStylistId)
         {
-            if(stylist.Clients.Count == 0)
+            _db.Entry(client).State = EntityState.Modified;
+            _db.SaveChanges();
+            Stylist thisStylist = _db.Stylists.Include(stylist => stylist.Clients).FirstOrDefault(stylist => stylist.StylistId == fromStylistId);
+            if(thisStylist.Clients.Count == 0)
             {
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Reassign", new {id = stylist.StylistId});
+                return RedirectToAction("Reassign", new {id = fromStylistId});
             }
         }
     }

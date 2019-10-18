@@ -10,13 +10,14 @@
 {
     @using (Html.BeginForm())
     {
-        <h4>client.Name</h4>
+        <h4>@client.Name</h4>
         <input type="hidden" name="ClientId" value=@client.ClientId>
         <input type="hidden" name="Name" value=@client.Name>
+        <input type="hidden" name="fromStylistId" value=@Model.StylistId>
 
         <div class="form-group">
             <label name="StylistId" value="New Stylist">
-            @Html.DropDownList("StylistId");
+            @Html.DropDownList("StylistId")
         </div>
 
         <input type="submit" value="Save" />
