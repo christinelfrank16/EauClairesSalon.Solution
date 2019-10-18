@@ -17,6 +17,7 @@
         @Html.LabelFor(model => model.PriceRating)
         @Html.TextBoxFor(model => model.PriceRating) 
     </div>
+    @Html.HiddenFor(model => model.StylistId, Model.StylistId)
 
     <input type="submit" value="Save" />
 }
