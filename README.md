@@ -18,6 +18,17 @@ This is a MVC website created to allow a business owner to track stylists and th
 * Open a new Command Terminal and start MySql Server if not already running
     * Command: mysql -uroot -p{EnterYourPassword}
 
+* In the main project folder of the local repository, create a file "appsettings.json" and add the following content:
+
+```JSON
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Port=3306;database=Christine_Frank;uid=root;pwd=epicodus;"
+  }
+}
+```
+
+
     ==> TODO: ADD DATABASE CREATION STEPS
 
 * Open a new Command Terminal and route to the main project folder of the local repository (//Desktop/EauClairesSalon.Solution/EauClairesSalon)
