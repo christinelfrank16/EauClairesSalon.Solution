@@ -30,5 +30,12 @@ namespace HairSalon.Controllers
             return RedirectToRoute("Stylists", new { controller="Stylists", action="Details", id = stylistId });
         }
 
+        [Route("/Stylists/{stylistId}/Clients/{id}/Details", Name="Details")]
+        public ActionResult Details(int id)
+        {
+            Client client = _db.Clients.FirstOrDefault(c => c.ClientId == id);
+            return View(client);
+        }
+
     }
 }

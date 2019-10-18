@@ -38,8 +38,8 @@ namespace HairSalon
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "Client",
-                    template: "Stylists/{stylistId}/{controller=Clients}/{action=Index}/{id?}");
+                    name: "Clients",
+                    template: "Stylists/{stylistId}/{controller=Clients}/{id?}/{action=Index}");
 
                 routes.MapRoute(
                     name: "Stylists",
