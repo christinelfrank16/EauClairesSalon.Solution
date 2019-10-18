@@ -27,9 +27,20 @@ This is a MVC website created to allow a business owner to track stylists and th
   }
 }
 ```
-
-
-    ==> TODO: ADD DATABASE CREATION STEPS
+* Open MySql WorkBench and go to the Administrator tab. Under Management, select "Data Import/Restore"
+* In the Data Import window, under Import Options:
+  * Select the "Import from Self-Contained File" and then route to the Project Solution Folder and select the "structure.sql" file.
+  * Create a new schema named "christine_frank"
+  * Under the 'Select Database Objects to Import', select the dropdown option "Dump Structure Only"
+  * Press 'Start Import' button
+* Confirm successful import
+  * If unsuccessful use the MySql command:
+  ```
+  > CREATE DATABASE christine_frank;
+  > USE christine_frank;
+  > CREATE TABLE stylists (StylistId serial PRIMARY KEY, name VARCHAR(255));
+  > CREATE TABLE clients (ClientId serial PRIMARY KEY, description VARCHAR(255));
+  ```
 
 * Open a new Command Terminal and route to the main project folder of the local repository (//Desktop/EauClairesSalon.Solution/EauClairesSalon)
 * Enter command 'dotnet run' into the Terminal
