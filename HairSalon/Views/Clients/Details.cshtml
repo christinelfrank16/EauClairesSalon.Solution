@@ -1,8 +1,8 @@
 @using HairSalon.Models;
 @model HairSalon.Models.Client;
 @{
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = $"{@Model.FirstName}_{@Model.LastName}";
     Layout = "_Layout";
 }
 
-<h1>@Model.Name</h1>
+<h1>@Model.FirstName</h1>

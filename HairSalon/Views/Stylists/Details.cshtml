@@ -1,11 +1,11 @@
 @using HairSalon.Models;
 @model HairSalon.Models.Stylist;
 @{
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = "@Model.FirstName @Model.LastName";
     Layout = "_Layout";
 }
 
-<h1>@Model.Name</h1>
+<h1>@Model.FirstName @Model.LastName</h1>
 <h4>Price Rating: @await Html.PartialAsync("PriceRating", Model.PriceRating)
 </h4>
 
@@ -19,7 +19,7 @@ else
     <ul>
     @foreach(Client client in @Model.Clients)
     {
-        <li><a href="@Url.RouteUrl("Clients", new { controller="Clients", action="Details", id = @client.ClientId, stylistId = @Model.StylistId })">@client.Name</a></li>
+        <li><a href="@Url.RouteUrl("Clients", new { controller="Clients", action="Details", id = @client.ClientId, stylistId = @Model.StylistId })">@client.FirstName @client.LastName</a></li>
     }
     </ul>
 }

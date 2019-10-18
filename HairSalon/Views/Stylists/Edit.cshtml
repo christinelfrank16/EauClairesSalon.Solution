@@ -1,22 +1,33 @@
 @{
-    ViewData["Title"] = "Edit @Model.Name";
+    ViewData["Title"] = "Edit @Model.FirstName @Model.LastName";
     Layout = "_Layout";
 }
 
 @model HairSalon.Models.Stylist;
-<h3>Edit @Model.Name</h3>
+<h3>Edit @Model.FirstName @Model.LastName</h3>
 
 @using (Html.BeginForm())
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.Name)
-        @Html.TextBoxFor(model => model.Name) 
+        @Html.LabelFor(model => model.FirstName)
+        @Html.TextBoxFor(model => model.FirstName) 
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName)
+        @Html.TextBoxFor(model => model.LastName) 
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.PriceRating)
         @Html.TextBoxFor(model => model.PriceRating) 
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate)
+        @Html.TextBoxFor(model => model.StartDate, "{0:MM/dd/yyyy}", new { @class = "form-control"}) 
+    </div>
+    
     @Html.HiddenFor(model => model.StylistId, Model.StylistId)
 
     <input type="submit" value="Save" />
