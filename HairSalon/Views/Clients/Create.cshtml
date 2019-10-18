@@ -1,0 +1,20 @@
+@{
+    ViewData["Title"] = "Add a Client";
+    Layout = "_Layout";
+    int stylistId = ViewBag.StylistId;
+}
+@using System;
+@model HairSalon.Models.Client;
+<h3>Add a new Client</h3>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name) 
+    </div>
+
+    @Html.HiddenFor(model => model.StylistId, stylistId)
+
+    <input type="submit" value="Add new client" />
+}

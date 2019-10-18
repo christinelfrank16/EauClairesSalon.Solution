@@ -23,7 +23,7 @@ else
     }
     </ul>
 }
-<p>Is a client missing? Add one @Html.ActionLink("here", "Create","Client", new { id = Model.StylistId })</p>
+<p>Is a client missing? Add one @Html.ActionLink("here", "Create", "Clients", new {Model.StylistId})</p>
 
 <p>@Html.ActionLink("Remove Stylist", "Delete", new {id = @Model.StylistId })</p>
 <p>@Html.ActionLink("Edit Stylist", "Edit", new {id = @Model.StylistId })</p>

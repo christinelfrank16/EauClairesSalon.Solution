@@ -76,5 +76,25 @@ namespace HairSalon.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult Reassign(int id)
+        {
+            Stylist thisStylist = _db.Stylists.Include(stylist => stylist.Clients).FirstOrDefault(stylist => stylist.StylistId == id);
+            ViewBag.StylistId = new SelectList(_db.Stylists.Where(stylist => stylist.StylistId != id).Select(s => s).ToList(), "StylistId", "Name");
+            return View(thisStylist);
+        }
+
+        [HttpPost]
+        public ActionResult Reassign(Stylist stylist, List<Client> clients)
+        {
+            if(stylist.Clients.Count == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Reassign", new {id = stylist.StylistId});
+            }
+        }
     }
 }
