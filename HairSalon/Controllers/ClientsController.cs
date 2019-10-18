@@ -25,25 +25,12 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/Stylists/{stylistId}/Clients/Create", Name="Create")]
-        public ActionResult Create(int stylistId, IFormCollection collection)
+        public ActionResult Create(int stylistId, Client client)
         {
-            try{
-                Client client = new Client();
-                
-                client.FirstName=collection["FirstName"];
-                client.LastName = collection["LastName"];
-                client.StartDate = DateTime.Parse(collection["StartDate"]);
-                client.PreferredAppointmentWeekDay = Int32.Parse(collection["PreferredAppointmentWeekDay"]);
-                client.PreferredAppointmentTime = collection["PreferredAppointmentTime"].ToString();
-                client.StylistId = Int32.Parse(collection["StylistId"]);
-                client.Stylist = _db.Stylists.FirstOrDefault(s => s.StylistId == collection["StylistId"]);
-                _db.Clients.Add(client);
-                _db.SaveChanges();
-            }
-            catch
-            {
 
-            }
+            _db.Clients.Add(client);
+            _db.SaveChanges();
+
             return RedirectToRoute("Stylists", new { controller="Stylists", action="Details", id = stylistId });
         }
 
