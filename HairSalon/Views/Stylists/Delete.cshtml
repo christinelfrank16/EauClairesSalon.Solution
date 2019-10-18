@@ -1,0 +1,28 @@
+@using HairSalon.Models;
+@model HairSalon.Models.Stylist;
+@{
+    ViewData["Title"] = "Remove " + @Model.Name;
+    Layout = "_Layout";
+}
+
+<h1>Remove @Model.Name</h1>
+<h3>Are you sure?</h3>
+@if(Model.Clients.Count != 0)
+{
+    <h4>This will permenantly remove @Model.Name and all of their clients.
+    </h4>
+    <h6>Existing clients:</h6>
+    <ul>
+        @foreach(Client client in @Model.Clients)
+        {
+            <li>@client.Name</li>
+        }
+    </ul>
+
+    <h6><span class="highlight">Recommendation</span>: @Html.ActionLink("Reassign client(s)", "Reassign", new { id = Model.SylistId}) to another stylist before removing. </h6>
+}
+
+@using(Html.BeginForm())
+{
+    <input type="submit" value="Remove">
+}
