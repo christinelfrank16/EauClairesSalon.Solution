@@ -25,6 +25,10 @@ namespace HairSalon.Controllers
         [HttpPost("/Search")]
         public ActionResult Search(string searchType, string searchInput)
         {
+            if(String.IsNullOrEmpty(searchInput))
+            {
+                searchInput = "";
+            }
             ViewBag.SearchType = searchType;
             ViewBag.searchInput = searchInput;
             List<Object> model;
