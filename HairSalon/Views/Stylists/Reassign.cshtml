@@ -39,4 +39,4 @@
     count++;
 }
 </div>
-<p>Go back to @Html.ActionLink("@Model.FirstName @Model.LastName", "Details", new { id = Model.StylistId })'s detail page</p>
+<p>Go back to @Html.ActionLink($"{Model.FirstName} {Model.LastName}", "Details", new { id = Model.StylistId })'s detail page</p>

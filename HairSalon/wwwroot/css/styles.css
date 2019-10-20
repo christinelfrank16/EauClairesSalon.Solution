@@ -6,7 +6,11 @@ img.price-rating {
     padding-top: 3em;
 }
 
-.anniversary {
+form#search {
+    margin-left: 50px;
+}
+
+span.anniversary {
     font-weight: bold;
     color: cadetblue;
 }

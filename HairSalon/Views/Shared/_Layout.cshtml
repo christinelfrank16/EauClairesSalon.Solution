@@ -21,6 +21,7 @@
             crossorigin="anonymous"
             integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
@@ -46,10 +47,19 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="row">
+        <div class="col-3 search-form">
+          @await Html.PartialAsync("SearchForm")
+        </div>
+        <div class="col">
+          <div id="results">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+          </div>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
