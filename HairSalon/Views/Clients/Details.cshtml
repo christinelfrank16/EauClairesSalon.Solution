@@ -5,4 +5,15 @@
     Layout = "_Layout";
 }
 
-<h1>@Model.FirstName</h1>
+<h1>@Model.FirstName @Model.LastName</h1>
+<h4>Registered: @Model.StartDate.ToShortDateString()</h4>
+@if(DateTime.Today.Month == Model.StartDate.Month && DateTime.Today.Day == Model.StartDate.Day && DateTime.Today.Year != Model.StartDate.Year)
+{
+    <h3><span class="anniversary">Today is their @(DateTime.Today.Year - Model.StartDate.Year) year Start Date Anniversary!</span></h3>
+}
+<br>
+<h5>Preferred Appointment Stats:</h5>
+<p><b>Day of Week</b>: @(Enum.GetName(typeof(DayOfWeek),Model.PreferredAppointmentWeekDay))</p>
+<p><b>Time of Day</b>: @Model.PreferredAppointmentTime <br><em>(24-hr format)</em></p>
+
+<p>Go back to @Html.ActionLink($"{Model.Stylist.FirstName} {Model.Stylist.LastName}", "Details", "Stylists",new  { id = Model.Stylist.StylistId })</p>

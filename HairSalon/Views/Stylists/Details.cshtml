@@ -1,14 +1,18 @@
 @using HairSalon.Models;
 @model HairSalon.Models.Stylist;
 @{
-    ViewData["Title"] = "@Model.FirstName @Model.LastName";
+    ViewData["Title"] = $"{Model.FirstName} {Model.LastName}";
     Layout = "_Layout";
 }
 
 <h1>@Model.FirstName @Model.LastName</h1>
-<h4>Price Rating: @await Html.PartialAsync("PriceRating", Model.PriceRating)
-</h4>
-
+<h4>Price Rating: @await Html.PartialAsync("PriceRating", Model.PriceRating)</h4>
+<h4>Start Date: @Model.StartDate.ToShortDateString()</h4>
+@if(DateTime.Today.Month == Model.StartDate.Month && DateTime.Today.Day == Model.StartDate.Day && DateTime.Today.Year != Model.StartDate.Year)
+{
+    <h3><span class="anniversary">Today is their @(DateTime.Today.Year - Model.StartDate.Year) year Start Date Anniversary!</span></h3>
+}
+<br>
 <h3>Clients:</h3>
 @if(@Model.Clients.Count == 0)
 {

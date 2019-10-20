@@ -22,8 +22,9 @@ This is a MVC website created to allow a business owner to track stylists and th
 
 ```JSON
 {
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=Christine_Frank;uid=root;pwd=epicodus;"
+  "ConnectionStrings": 
+  {
+    "DefaultConnection": "Server=localhost;Port=3306;database=christine_frank;uid=root;pwd=epicodus;"
   }
 }
 ```

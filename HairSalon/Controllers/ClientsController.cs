@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
         [Route("/Stylists/{stylistId}/Clients/{id}/Details", Name="Details")]
         public ActionResult Details(int id)
         {
-            Client client = _db.Clients.FirstOrDefault(c => c.ClientId == id);
+            Client client = _db.Clients.Include(c => c.Stylist).FirstOrDefault(c => c.ClientId == id);
             return View(client);
         }
 
