@@ -34,12 +34,46 @@ This is a MVC website created to allow a business owner to track stylists and th
   * Under the 'Select Database Objects to Import', select the dropdown option "Dump Structure Only"
   * Press 'Start Import' button
 * Confirm successful import
-  * If unsuccessful use the MySql command:
-  ```
-  > CREATE DATABASE christine_frank;
-  > USE christine_frank;
-  > CREATE TABLE stylists (StylistId serial PRIMARY KEY, name VARCHAR(255));
-  > CREATE TABLE clients (ClientId serial PRIMARY KEY, description VARCHAR(255));
+  * If unsuccessful execute the following MySql command in a new query:
+  ```SQL
+  -- -----------------------------------------------------
+  -- Schema christine_frank
+  -- -----------------------------------------------------
+  CREATE SCHEMA IF NOT EXISTS `christine_frank` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+  USE `christine_frank` ;
+
+  -- -----------------------------------------------------
+  -- Table `christine_frank`.`clients`
+  -- -----------------------------------------------------
+  CREATE TABLE IF NOT EXISTS `christine_frank`.`clients` (
+    `ClientId` INT(11) NOT NULL AUTO_INCREMENT,
+    `StylistId` INT(11) NOT NULL,
+    `FirstName` VARCHAR(255) NULL DEFAULT NULL,
+    `LastName` VARCHAR(255) NULL DEFAULT NULL,
+    `StartDate` DATETIME NULL DEFAULT NULL,
+    `PreferredAppointmentWeekDay` INT(11) NULL DEFAULT NULL,
+    `PreferredAppointmentTime` VARCHAR(255) NULL DEFAULT NULL,
+    PRIMARY KEY (`ClientId`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 11
+  DEFAULT CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+  -- -----------------------------------------------------
+  -- Table `christine_frank`.`stylists`
+  -- -----------------------------------------------------
+  CREATE TABLE IF NOT EXISTS `christine_frank`.`stylists` (
+    `StylistId` INT(11) NOT NULL AUTO_INCREMENT,
+    `FirstName` VARCHAR(255) NULL DEFAULT NULL,
+    `LastName` VARCHAR(255) NULL DEFAULT NULL,
+    `PriceRating` INT(11) NULL DEFAULT NULL,
+    `StartDate` DATETIME NULL DEFAULT NULL,
+    PRIMARY KEY (`StylistId`))
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
   ```
 
 * Open a new Command Terminal and route to the main project folder of the local repository (//Desktop/EauClairesSalon.Solution/EauClairesSalon)
