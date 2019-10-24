@@ -22,60 +22,24 @@ This is a MVC website created to allow a business owner to track stylists and th
 
 ```JSON
 {
-  "ConnectionStrings": 
+  "ConnectionStrings":
   {
     "DefaultConnection": "Server=localhost;Port=3306;database=christine_frank;uid=root;pwd=epicodus;"
   }
 }
 ```
-* Open MySql WorkBench and go to the Administrator tab. Under Management, select "Data Import/Restore"
-* In the Data Import window, under Import Options:
-  * Select the "Import from Self-Contained File" and then route to the Project Solution Folder and select the "structure.sql" file.
-  * Create a new schema named "christine_frank"
-  * Under the 'Select Database Objects to Import', select the dropdown option "Dump Structure Only"
-  * Press 'Start Import' button
-* Confirm successful import
-  * If unsuccessful execute the following MySql command in a new query:
-  ```SQL
-  -- -----------------------------------------------------
-  -- Schema christine_frank
-  -- -----------------------------------------------------
-  CREATE SCHEMA IF NOT EXISTS `christine_frank` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-  USE `christine_frank` ;
-
-  -- -----------------------------------------------------
-  -- Table `christine_frank`.`clients`
-  -- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS `christine_frank`.`clients` (
-    `ClientId` INT(11) NOT NULL AUTO_INCREMENT,
-    `StylistId` INT(11) NOT NULL,
-    `FirstName` VARCHAR(255) NULL DEFAULT NULL,
-    `LastName` VARCHAR(255) NULL DEFAULT NULL,
-    `StartDate` DATETIME NULL DEFAULT NULL,
-    `PreferredAppointmentWeekDay` INT(11) NULL DEFAULT NULL,
-    `PreferredAppointmentTime` VARCHAR(255) NULL DEFAULT NULL,
-    PRIMARY KEY (`ClientId`))
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 11
-  DEFAULT CHARACTER SET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci;
-
-  -- -----------------------------------------------------
-  -- Table `christine_frank`.`stylists`
-  -- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS `christine_frank`.`stylists` (
-    `StylistId` INT(11) NOT NULL AUTO_INCREMENT,
-    `FirstName` VARCHAR(255) NULL DEFAULT NULL,
-    `LastName` VARCHAR(255) NULL DEFAULT NULL,
-    `PriceRating` INT(11) NULL DEFAULT NULL,
-    `StartDate` DATETIME NULL DEFAULT NULL,
-    PRIMARY KEY (`StylistId`))
-  ENGINE = InnoDB
-  AUTO_INCREMENT = 3
-  DEFAULT CHARACTER SET = utf8mb4
-  COLLATE = utf8mb4_0900_ai_ci;
-
-  ```
+* In a new Command Terminal route to the project folder of the local repository and run the migration command:
+```
+dotnet ef database update
+```
+* Confirm successful migration
+  * If unsuccessful perform the following:
+    * Open MySql WorkBench and go to the Administrator tab. Under Management, select "Data Import/Restore"
+    * In the Data Import window, under Import Options:
+      * Select the "Import from Self-Contained File" and then route to the Project Solution Folder and select the "structure.sql" file.
+      * Create a new schema named "christine_frank"
+      * Under the 'Select Database Objects to Import', select the dropdown option "Dump Structure Only"
+      * Press 'Start Import' button
 
 * Open a new Command Terminal and route to the main project folder of the local repository (//Desktop/EauClairesSalon.Solution/EauClairesSalon)
 * Enter command 'dotnet run' into the Terminal
